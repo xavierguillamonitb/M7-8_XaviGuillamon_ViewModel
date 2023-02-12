@@ -27,24 +27,28 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContent {
-
+      // TODO 5. Show screen
     }
   }
 }
 
 @Composable
 fun AffirmationApp() {
+  // TODO 4. Apply Theme and affirmation list
 }
 
 @Composable
 fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
+  // TODO 3. Wrap affirmation card in a lazy column
 }
 
 @Composable
 fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
+  // TODO 1. Your card UI
 }
 
 @Preview
 @Composable
 private fun AffirmationCardPreview() {
+  // TODO 2. Preview your card
 }
