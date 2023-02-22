@@ -17,29 +17,31 @@ package com.example.affirmations
 
 import android.content.pm.ApplicationInfo
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
+import androidx.annotation.StringRes
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.affirmations.data.Datasource
 import com.example.affirmations.model.Affirmation
 import com.example.affirmations.ui.theme.AffirmationsTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.runtime.*
+import androidx.compose.ui.draw.clip
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,26 +74,77 @@ fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Mod
 
 @Composable
 fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
+    var expanded by remember { mutableStateOf(false) }
     Card(
-        shape = RoundedCornerShape(15.dp)
+        shape = RoundedCornerShape(15.dp),
+
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier.animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
         ) {
-            Image(
-                painter = painterResource(id = affirmation.imageResourceId),
-                contentDescription = stringResource(
-                    id = affirmation.stringResourceId
-                ),
-            )
-            Text(
-                text = stringResource(id = affirmation.stringResourceId),
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = affirmation.imageResourceId),
+                    contentDescription = stringResource(
+                        id = affirmation.stringResourceId
+                    ),
+                    modifier = Modifier
+                        .size(100.dp)
+                        .padding(8.dp)
+                        .clip(CutCornerShape(20))
+                )
+                Text(
+                    text = stringResource(id = affirmation.stringResourceId),
+                    modifier = Modifier
+                        .weight(1f)
+                )
+                DropDownButton(expanded = expanded, onClick = { expanded = !expanded })
+            }
+            if (expanded) DescriptionsInCard(desCard = affirmation.descriptionId)
         }
     }
 }
+
+@Composable
+private fun DropDownButton(
+    expanded: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(onClick = onClick) {
+        Icon(
+            imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+            tint = MaterialTheme.colors.secondary,
+            contentDescription = stringResource(R.string.descriptionIcon)
+        )
+    }
+}
+
+@Composable
+fun DescriptionsInCard(
+    @StringRes desCard: Int, modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.padding(
+            start = 16.dp,
+            top = 8.dp,
+            bottom = 16.dp,
+            end = 16.dp
+        )
+    ) {
+        Text(
+            text = stringResource(id = desCard)
+        )
+    }
+}
+
 /*
 @Preview
 @Composable
