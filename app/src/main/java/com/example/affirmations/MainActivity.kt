@@ -16,7 +16,9 @@
 package com.example.affirmations
 
 import android.content.pm.ApplicationInfo
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
@@ -41,6 +43,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.draw.clip
 
 class MainActivity : ComponentActivity() {
@@ -48,14 +51,48 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AffirmationApp()
+            Log.d(TAG, "onCreate Called ")
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart Called ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume Called ")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause Called ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop Called ")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy Called ")
+    }
 }
+
+private const val TAG = "MainActivity"
 
 @Composable
 fun AffirmationApp() {
     AffirmationsTheme() {
-        AffirmationList(affirmationList = Datasource().loadAffirmations())
+        val count = rememberSaveable { mutableStateOf(0) }
+        Column() {
+            TextButton(onClick = { count.value += 1 }) {
+                Text(text = "You clicked me ${count.value} times")
+            }
+            AffirmationList(affirmationList = Datasource().loadAffirmations())
+        }
     }
 }
 
@@ -78,7 +115,7 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
     Card(
         shape = RoundedCornerShape(15.dp),
 
-    ) {
+        ) {
         Column(
             modifier = Modifier.animateContentSize(
                 animationSpec = spring(
