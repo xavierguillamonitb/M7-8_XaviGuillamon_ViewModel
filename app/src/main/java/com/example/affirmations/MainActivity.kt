@@ -15,10 +15,9 @@
  */
 package com.example.affirmations
 
-import android.content.pm.ApplicationInfo
-import android.nfc.Tag
+import android.R.attr.value
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
@@ -31,53 +30,30 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import com.example.affirmations.data.Datasource
-import com.example.affirmations.model.Affirmation
-import com.example.affirmations.ui.theme.AffirmationsTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import com.example.affirmations.data.Datasource
+import com.example.affirmations.model.Character
+import com.example.affirmations.ui.theme.AffirmationsTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AffirmationApp()
-            Log.d(TAG, "onCreate Called ")
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart Called ")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume Called ")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause Called ")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "onStop Called ")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy Called ")
     }
 }
 
@@ -91,13 +67,13 @@ fun AffirmationApp() {
             TextButton(onClick = { count.value += 1 }) {
                 Text(text = "You clicked me ${count.value} times")
             }
-            AffirmationList(affirmationList = Datasource().loadAffirmations())
+            AffirmationList(affirmationList = Datasource().loadCharacters())
         }
     }
 }
 
 @Composable
-fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
+fun AffirmationList(affirmationList: List<Character>, modifier: Modifier = Modifier) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(16.dp)
@@ -110,11 +86,10 @@ fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Mod
 }
 
 @Composable
-fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
+fun AffirmationCard(affirmation: Character, modifier: Modifier = Modifier) {
     var expanded by remember { mutableStateOf(false) }
     Card(
         shape = RoundedCornerShape(15.dp),
-
         ) {
         Column(
             modifier = Modifier.animateContentSize(
@@ -168,6 +143,7 @@ private fun DropDownButton(
 fun DescriptionsInCard(
     @StringRes desCard: Int, modifier: Modifier = Modifier
 ) {
+    val activity = LocalContext.current as MainActivity
     Column(
         modifier = modifier.padding(
             start = 16.dp,
@@ -177,15 +153,16 @@ fun DescriptionsInCard(
         )
     ) {
         Text(
-            text = stringResource(id = desCard)
+            text = stringResource(id = desCard),
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 2
         )
+        Button(onClick = {
+            val myIntent = Intent(activity, DetailActivity::class.java)
+            myIntent.putExtra("id", desCard) //Optional parameters
+            activity.startActivity(myIntent)
+        }) {
+            Text(text = "See More")
+        }
     }
 }
-
-/*
-@Preview
-@Composable
-private fun AffirmationCardPreview() {
-    AffirmationList(affirmationList = Datasource().loadAffirmations())
-}
-*/

@@ -17,10 +17,11 @@ package com.example.affirmations.model
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 /**
- * [Affirmation] is the data class to represent the Affirmation text and imageResourceId
+ * [Character] is the data class to represent the Affirmation text and imageResourceId
  */
-data class Affirmation(
+data class Character(
     @StringRes val stringResourceId: Int,
     @DrawableRes val imageResourceId: Int,
-    @StringRes val descriptionId: Int
+    @StringRes val descriptionId: Int,
+    val id: Int
 )

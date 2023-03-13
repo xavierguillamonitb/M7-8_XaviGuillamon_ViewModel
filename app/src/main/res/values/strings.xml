@@ -16,26 +16,26 @@
 -->
 <resources>
     <string name="app_name">Affirmations</string>
-    <string name="affirmation1">Albedo</string>
-    <string name="affirmation2">Bennet</string>
-    <string name="affirmation3">Cyno</string>
-    <string name="affirmation4">Eula</string>
-    <string name="affirmation5">Ganyu</string>
-    <string name="affirmation6">Kaeya</string>
-    <string name="affirmation7">Ningguangg</string>
-    <string name="affirmation8">Xiangling</string>
-    <string name="affirmation9">Xiao</string>
-    <string name="affirmation10">Yoimiya</string>
-    <string name="description1">Descripció 1</string>
-    <string name="description2">Descripció 2</string>
-    <string name="description3">Descripció 3</string>
-    <string name="description4">Descripció 4</string>
-    <string name="description5">Descripció 5</string>
-    <string name="description6">Descripció 6</string>
-    <string name="description7">Descripció 7</string>
-    <string name="description8">Descripció 8</string>
-    <string name="description9">Descripció 9</string>
-    <string name="description10">Descripció 10</string>
+    <string name="character1">Albedo</string>
+    <string name="character2">Bennet</string>
+    <string name="character3">Cyno</string>
+    <string name="character4">Eula</string>
+    <string name="character5">Ganyu</string>
+    <string name="character6">Kaeya</string>
+    <string name="character7">Ningguangg</string>
+    <string name="character8">Xiangling</string>
+    <string name="character9">Xiao</string>
+    <string name="character10">Yoimiya</string>
+    <string name="description1">Albedo is a playable Geo character in Genshin Impact. A synthetic human made by the alchemist Rhinedottir, the mysterious Albedo is the Chief Alchemist and Captain of the Investigation Team of the Knights of Favonius. </string>
+    <string name="description2">Bennett is a playable Pyro character in Genshin Impact. An orphan discovered by an elderly adventurer as a baby, Bennett was raised in Mondstadt\s Adventurer\s Guild. He is the one and only member of "Benny\s Adventure Team," as everyone else left the team after experiencing the constant misfortune that follows him. </string>
+    <string name="description3">Cyno is a playable Electro character in Genshin Impact. As the General Mahamatra, Cyno leads the Matra and strikes fear into the hearts of researchers of the Sumeru Akademiya. In spite of this, Cyno has a fun side outside of his role in the Akademiya, as he has an affinity for Genius Invokation TCG and constantly cracks unfunny jokes. </string>
+    <string name="description4">Eula Lawrence is a playable Cryo character in Genshin Impact.  Although a descendant of the infamous and tyrannical Lawrence Clan, Eula severed her ties with the clan and became the captain of the Reconnaissance Company with the Knights of Favonius. </string>
+    <string name="description5">Ganyu (Chinese: 甘雨 Gānyǔ) is a playable Cryo character in Genshin Impact.  She is a half-qilin Adeptus under contract with the Geo Archon Morax and serves as the general secretary of the Liyue Qixing. </string>
+    <string name="description6">Kaeya Alberich is a playable Cryo character in Genshin Impact.  Kaeya is the Cavalry Captain of the Knights of Favonius. He is held in high regard by the people of Mondstadt — even with all his eccentricities and secrets.  He is obtained for free in the Archon Quest Crash Course in Prologue: Act I - The Outlander Who Caught the Wind. </string>
+    <string name="description7">Ningguang (Chinese: 凝光 Níngguāng) is a playable Geo character in Genshin Impact.  The Tianquan of the Liyue Qixing and owner of the floating Jade Chamber in the skies of Liyue, Ningguang is a mogul who shakes the very foundations of business circles. Even grabbing a few scraps from the documents she shreds from the Jade Chamber will gift one an invaluable fragment of her wisdom, enough to stay a step or two from one\s peers. </string>
+    <string name="description8">Mao Xiangling(Chinese: 卯香菱 Mǎo Xiānglíng) is a playable Pyro character in Genshin Impact.  She is the Head Chef at the Wanmin Restaurant and runs it alongside her father Chef Mao. As a chef, Xiangling isn\t afraid to try out different recipes or "exotic" ingredients, making her dishes sometimes quite unique. </string>
+    <string name="description9">Xiao (Chinese: 魈 Xiāo) is a playable Anemo character in Genshin Impact.  He is an adeptus, under the name Alatus, and the sole surviving member of the five foremost Yakshas dispatched by Morax to subdue the demonic spirits that plagued Liyue. He currently resides at Wangshu Inn and mostly restrains himself from large crowds and social interactions. </string>
+    <string name="description10">Naganohara Yoimiya (Japanese: 長野原宵宮 Naganohara Yoimiya) is a playable Pyro character in Genshin Impact.  Yoimiya is the current owner of Naganohara Fireworks; with her colorful fireworks and outgoing personality, Yoimiya is loved by everyone on Narukami Island. She was coined as the "Queen of the Summer Festival," as they believe summer is not the same without her. </string>
     <string name="descriptionIcon">IconDropDOwn</string>
     <string name="dropDownText">DropDownSampleText</string>
 
