@@ -22,6 +22,7 @@ import androidx.annotation.StringRes
 data class Character(
     @StringRes val stringResourceId: Int,
     @DrawableRes val imageResourceId: Int,
+    @DrawableRes val imageDetailResourceId: Int,
     @StringRes val descriptionId: Int,
     val id: Int
 )

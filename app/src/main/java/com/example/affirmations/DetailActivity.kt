@@ -11,24 +11,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.example.affirmations.ui.theme.CharactersViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.affirmations.ui.theme.DetailScreen
 
 class DetailActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val characterId = intent.getIntExtra("id", 0)
         setContent {
-
+            DetailScreen(characterId = characterId)
         }
     }
 
 }
 
 @Composable
-fun DetailScreen(modifier: Modifier, charactersViewModel: CharactersViewModel = viewModel()) {
-   // charactersViewModel.loadCharacters()
-
+fun DetailScreen(charactersViewModel: CharactersViewModel = viewModel(), characterId: Int) {
     val characterUIstate by charactersViewModel.uiState.collectAsState()
+    charactersViewModel.loadCharacters(characterId)
     characterUIstate.characterClicked?.let { character ->
-        Log.d(TAG, "DetailScreen: $character")
+        DetailScreen(characterClicked = character)
     }
-
 }

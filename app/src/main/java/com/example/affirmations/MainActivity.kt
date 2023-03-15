@@ -15,7 +15,6 @@
  */
 package com.example.affirmations
 
-import android.R.attr.value
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -46,7 +45,6 @@ import androidx.compose.ui.unit.dp
 import com.example.affirmations.data.Datasource
 import com.example.affirmations.model.Character
 import com.example.affirmations.ui.theme.AffirmationsTheme
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,14 +77,14 @@ fun AffirmationList(affirmationList: List<Character>, modifier: Modifier = Modif
         contentPadding = PaddingValues(16.dp)
     ) {
         items(affirmationList.count()) { element ->
-            AffirmationCard(affirmation = affirmationList[element])
+            AffirmationCard(character = affirmationList[element])
             Spacer(modifier = Modifier.size(15.dp))
         }
     }
 }
 
 @Composable
-fun AffirmationCard(affirmation: Character, modifier: Modifier = Modifier) {
+fun AffirmationCard(character: Character, modifier: Modifier = Modifier) {
     var expanded by remember { mutableStateOf(false) }
     Card(
         shape = RoundedCornerShape(15.dp),
@@ -103,9 +101,9 @@ fun AffirmationCard(affirmation: Character, modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = affirmation.imageResourceId),
+                    painter = painterResource(id = character.imageResourceId),
                     contentDescription = stringResource(
-                        id = affirmation.stringResourceId
+                        id = character.stringResourceId
                     ),
                     modifier = Modifier
                         .size(100.dp)
@@ -113,13 +111,13 @@ fun AffirmationCard(affirmation: Character, modifier: Modifier = Modifier) {
                         .clip(CutCornerShape(20))
                 )
                 Text(
-                    text = stringResource(id = affirmation.stringResourceId),
+                    text = stringResource(id = character.stringResourceId),
                     modifier = Modifier
                         .weight(1f)
                 )
                 DropDownButton(expanded = expanded, onClick = { expanded = !expanded })
             }
-            if (expanded) DescriptionsInCard(desCard = affirmation.descriptionId)
+            if (expanded) DescriptionsInCard(desCard = character.descriptionId, characterId = character.id)
         }
     }
 }
@@ -127,8 +125,7 @@ fun AffirmationCard(affirmation: Character, modifier: Modifier = Modifier) {
 @Composable
 private fun DropDownButton(
     expanded: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit
 ) {
     IconButton(onClick = onClick) {
         Icon(
@@ -141,7 +138,7 @@ private fun DropDownButton(
 
 @Composable
 fun DescriptionsInCard(
-    @StringRes desCard: Int, modifier: Modifier = Modifier
+    @StringRes desCard: Int, modifier: Modifier = Modifier, characterId: Int
 ) {
     val activity = LocalContext.current as MainActivity
     Column(
@@ -159,7 +156,7 @@ fun DescriptionsInCard(
         )
         Button(onClick = {
             val myIntent = Intent(activity, DetailActivity::class.java)
-            myIntent.putExtra("id", desCard) //Optional parameters
+            myIntent.putExtra("id", characterId) //Optional parameters
             activity.startActivity(myIntent)
         }) {
             Text(text = "See More")
