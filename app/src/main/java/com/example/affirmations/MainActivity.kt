@@ -54,9 +54,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-private const val TAG = "MainActivity"
-
 @Composable
 fun AffirmationApp() {
     AffirmationsTheme() {
@@ -156,7 +153,7 @@ fun DescriptionsInCard(
         )
         Button(onClick = {
             val myIntent = Intent(activity, DetailActivity::class.java)
-            myIntent.putExtra("id", characterId) //Optional parameters
+            myIntent.putExtra("id", characterId)
             activity.startActivity(myIntent)
         }) {
             Text(text = "See More")

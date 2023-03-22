@@ -22,16 +22,16 @@ import com.example.affirmations.model.Character
 class Datasource() {
     fun loadCharacters(): List<Character> {
         return listOf<Character>(
-            Character(R.string.character1, R.drawable.image1, R.drawable.albedo, R.string.description1, 1),
-            Character(R.string.character2, R.drawable.image2, R.drawable.bennet, R.string.description2, 2),
-            Character(R.string.character3, R.drawable.image3, R.drawable.cyno, R.string.description3, 3),
-            Character(R.string.character4, R.drawable.image4, R.drawable.eula, R.string.description4,4),
-            Character(R.string.character5, R.drawable.image5, R.drawable.ganyu, R.string.description5,5),
-            Character(R.string.character6, R.drawable.image6, R.drawable.kaeya, R.string.description6,6),
-            Character(R.string.character7, R.drawable.image7, R.drawable.ningguangg, R.string.description7,7),
-            Character(R.string.character8, R.drawable.image8, R.drawable.xiangling, R.string.description8,8),
-            Character(R.string.character9, R.drawable.image9, R.drawable.xiao, R.string.description9,9),
-            Character(R.string.character10, R.drawable.image10, R.drawable.yoimiya, R.string.description10,10)
+            Character(R.string.character1, R.drawable.image1, R.drawable.albedocard, R.drawable.albedomodel, R.drawable.albedo, R.string.description1, 1),
+            Character(R.string.character2, R.drawable.image2, R.drawable.bennetcard, R.drawable.bennetmodel,  R.drawable.bennet, R.string.description2, 2),
+            Character(R.string.character3, R.drawable.image3, R.drawable.cynocard, R.drawable.cynomodel,  R.drawable.cyno, R.string.description3, 3),
+            Character(R.string.character4, R.drawable.image4, R.drawable.eulacard, R.drawable.eulamodel,  R.drawable.eula, R.string.description4,4),
+            Character(R.string.character5, R.drawable.image5, R.drawable.ganyucard, R.drawable.ganyumodel,  R.drawable.ganyu, R.string.description5,5),
+            Character(R.string.character6, R.drawable.image6, R.drawable.kaeyacard, R.drawable.kaeyamodel,  R.drawable.kaeya, R.string.description6,6),
+            Character(R.string.character7, R.drawable.image7, R.drawable.ningguangcard, R.drawable.ningguangmodel,  R.drawable.ningguang, R.string.description7,7),
+            Character(R.string.character8, R.drawable.image8, R.drawable.xianglingcard, R.drawable.xianglingmodel,  R.drawable.xiangling, R.string.description8,8),
+            Character(R.string.character9, R.drawable.image9, R.drawable.xiaocard, R.drawable.xiaomodel,  R.drawable.xiao, R.string.description9,9),
+            Character(R.string.character10, R.drawable.image10, R.drawable.yoimiyacard, R.drawable.yoimiyamodel,  R.drawable.yoimiya, R.string.description10,10)
         )
     }
 }
