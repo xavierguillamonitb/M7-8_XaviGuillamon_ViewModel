@@ -7,6 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -34,6 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.affirmations.ui.theme.CharactersViewModel
@@ -158,26 +160,26 @@ fun DetailScreen(detailViewModel: DetailViewModel) {
                         contentScale = ContentScale.FillHeight,
                     )
                 }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 15.dp),
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    IconButton(onClick = { context.sendMail(uiState.emailTo, uiState.email) }) {
-                        Icon(
-                            imageVector = Icons.Filled.Mail,
-                            contentDescription = "Button Mail",
-                            modifier = Modifier.padding(end = 30.dp)
-                        )
-                    }
-                    IconButton(onClick = { context.dial(uiState.phone) }) {
-                        Icon(
-                            imageVector = Icons.Filled.Phone,
-                            contentDescription = "ButtonPhone",
-                            modifier = Modifier.padding(end = 30.dp)
-                        )
-                    }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 15.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                IconButton(onClick = { context.sendMail(uiState.emailTo, uiState.email) }) {
+                    Icon(
+                        imageVector = Icons.Filled.Mail,
+                        contentDescription = "Button Mail",
+                        modifier = Modifier.padding(end = 30.dp)
+                    )
+                }
+                IconButton(onClick = { context.dial(uiState.phone) }) {
+                    Icon(
+                        imageVector = Icons.Filled.Phone,
+                        contentDescription = "ButtonPhone",
+                        modifier = Modifier.padding(end = 30.dp)
+                    )
                 }
             }
         }
@@ -191,9 +193,9 @@ fun Context.sendMail(to: String, subject: String) {
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
         startActivity(Intent.createChooser(intent, ""))
     } catch (e: ActivityNotFoundException) {
-
+        Toast.makeText(this, "No email client installed.", Toast.LENGTH_SHORT).show()
     } catch (t: Throwable) {
-
+        Toast.makeText(this, "Nope", Toast.LENGTH_SHORT).show()
     }
 }
 
@@ -204,4 +206,9 @@ fun Context.dial(phone: String) {
     } catch (t: Throwable) {
 
     }
+}
+@Preview
+@Composable
+fun si(){
+    DetailScreen(detailViewModel = DetailViewModel(3))
 }
