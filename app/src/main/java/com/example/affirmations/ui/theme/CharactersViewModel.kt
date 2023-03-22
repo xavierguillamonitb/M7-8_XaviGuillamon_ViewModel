@@ -8,17 +8,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class CharactersViewModel : ViewModel(){
-    private val _uiState = MutableStateFlow(CharactersUIState(null))
-    val uiState: StateFlow<CharactersUIState> = _uiState.asStateFlow()
-
-    fun loadCharacters(id:Int) {
-        val characterList = Datasource().loadCharacters()
-
-        val character = characterList.firstOrNull { it.id == id }  // TODO calcular el que corresponde
-
-        _uiState.value = CharactersUIState(character)
-    }
+    private val _uiState = MutableStateFlow(Datasource().loadCharacters())
+    val uiState: StateFlow<List<Character>> = _uiState.asStateFlow()
 }
-class CharactersUIState(
-    val characterClicked: Character?
-)
